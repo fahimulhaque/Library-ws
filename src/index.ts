@@ -7,6 +7,8 @@ import Logger from "./lib/logger";
 import { bookRouter } from "./books/router/book.router";
 import { errorHandler } from "./middleware/error-middleware";
 import { notFoundHandler } from "./middleware/route-notFound-middleware";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./api.swagger";
 
 
 dotenv.config();
@@ -32,6 +34,8 @@ app.use(morganMiddleware);
  * which populates the request object with a new body object containing the parsed data.
  */
 app.use(express.json());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 app.use("/api/library/books", bookRouter);
 

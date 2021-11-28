@@ -8,7 +8,46 @@ import { userValidationRules, validate } from "../validator/book.validator";
 export const bookRouter = express.Router();
 
 
-// GET books
+/**
+ * @swagger
+ * /api/library/books:
+ *   get:
+ *     summary: Retrieve a list of JSONPlaceholder users.
+ *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+ *     responses:
+ *       200:
+ *         description: A list of books.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         description: The book ID.
+ *                         example: 1
+ *                       title:
+ *                         type: string
+ *                         description: The book's name.
+ *                         example: Head First
+ *                       isbn:
+ *                         type: string
+ *                         description: isbn no of the book.
+ *                         example: 1234567890123
+ *                       author:
+ *                         type: string
+ *                         description: book author name.
+ *                         example: Jack lee
+ *                       releaseDate:
+ *                         type: string
+ *                         description: Release date of the book.
+ *                         example: Tue 10 Dec 2020
+*/
 bookRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const books: Book[] = await BookService.findAll();
