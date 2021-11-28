@@ -1,1 +1,17 @@
+## Stage -1 Build step
+FROM node:16-slim as build
+
+WORKDIR /home/node
+COPY . ./
+RUN yarn install && yarn run build && yarn test
+
+## State -2 , Run app
+
 FROM node:16-slim
+WORKDIR /home/node
+USER node
+COPY --from=build /home/node/dist ./dist
+COPY --from=build /home/node/package*.json ./
+COPY --from=build /home/node/node_modules ./node_modules
+EXPOSE 8080
+CMD [ "yarn", "run", "serve" ]
