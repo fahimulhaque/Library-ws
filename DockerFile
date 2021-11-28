@@ -9,6 +9,7 @@ RUN yarn install && yarn run build && yarn test
 
 FROM node:16-slim
 WORKDIR /home/node
+ENV PORT=8080
 USER node
 COPY --from=build /home/node/dist ./dist
 COPY --from=build /home/node/package*.json ./
