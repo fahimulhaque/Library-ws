@@ -1,4 +1,4 @@
-## Stage -1 Build step
+# Build step
 FROM node:16-slim as build
 
 WORKDIR /home/node
