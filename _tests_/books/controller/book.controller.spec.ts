@@ -58,7 +58,7 @@ describe('books resources ', () => {
             "title": "Graph-Powered Machine Learning",
             "isbn": "9781617295645",
             "author": "Fahim",
-            "releaseDate": "Sat Nov 27 2021"
+            "releaseDate": "2021-11-27"
         });
         expect(response.statusCode).toBe(200);
         expect(response.body.author).toEqual("Fahim");
